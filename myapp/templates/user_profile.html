@@ -1,0 +1,6 @@
+<h1>Profile of {{ profile.user.username }}</h1>
+<p>{{ profile.bio }}</p>
+<p>Location: {{ profile.location }}</p>
+{% if profile.profile_picture %}
+    <img src="{{ profile.profile_picture.url }}" alt="Profile Picture">
+{% endif %}

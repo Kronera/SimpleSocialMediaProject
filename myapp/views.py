@@ -1,5 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from .models import BlogPost, UserProfile
+from rest_framework import viewsets
+from .serializers import BlogPostSerializer, UserProfileSerializer
 
 # View to display all blog posts
 def blog_list(request):
@@ -15,3 +17,11 @@ def blog_detail(request, pk):
 def user_profile(request, username):
     profile = get_object_or_404(UserProfile, user__username=username)
     return render(request, 'user_profile.html', {'profile': profile})
+
+class BlogPostViewSet(viewsets.ModelViewSet):
+    queryset = BlogPost.objects.all()
+    serializer_class = BlogPostSerializer
+
+class UserProfileViewSet(viewsets.ModelViewSet):
+    queryset = UserProfile.objects.all()
+    serializer_class = UserProfileSerializer
